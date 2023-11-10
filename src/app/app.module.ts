@@ -40,7 +40,7 @@ import { AuthenticationInterceptor } from './interceptors/authentication.interce
   ],
   providers: [
     provideNgxMask(),
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
   
   ],
   bootstrap: [AppComponent]
