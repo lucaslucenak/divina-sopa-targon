@@ -9,6 +9,14 @@
   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 
+/* styles.css ou styles.scss */
+.logo-img {
+  max-width: 200px;
+  max-height: 150px;
+  margin-bottom: 7%;
+}
+
+
 @media (min-width: 768px) {
   .gradient-form {
     height: 100vh !important;
