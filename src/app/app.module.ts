@@ -4,7 +4,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from "@angular/common/http";
 import { DeliveryComponent } from './pages/delivery/delivery.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
@@ -15,6 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     NgxMaskDirective, NgxMaskPipe
   ],
   providers: [
-    provideNgxMask()
+    provideNgxMask(),
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor}
+  
   ],
   bootstrap: [AppComponent]
 })
