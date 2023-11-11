@@ -35,7 +35,7 @@ export class LoginComponent {
     if (!this.login.cpf || !this.login.password) alert("Preencha todos os dados!");
     
     else {
-      this.authService.signIn(this.login).subscribe((res: any) => {
+      this.authService.signIn(this.login).subscribe(res => {
         localStorage.setItem('jwtToken', res.jwtToken);
         this.router.navigate(['delivery'])
       },
