@@ -16,6 +16,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AuthenticationInterceptor } from './interceptors/authentication.interce
     SidebarComponent,
     LoginComponent,
     LayoutComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,13 @@
-import { CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
 export const authenticationGuard: CanActivateFn = (route, state) => {
-  return true;
+  const jwtToken = localStorage.getItem('jwtToken');
+  const router = inject(Router);
+
+  if (jwtToken) {
+    return true;
+  } else {
+    return false;
+  }
 };
