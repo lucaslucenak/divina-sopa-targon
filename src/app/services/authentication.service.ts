@@ -18,4 +18,15 @@ export class AuthenticationService {
   signIn(login: LoginPostDto): Observable<AuthenticationModel> {
     return this.httpClient.post<AuthenticationModel>(`${this.noxusUrl}/authentication/login`, login);
   }
+
+  jwtTokenExists() {
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    if (jwtToken) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }

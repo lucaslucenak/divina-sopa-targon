@@ -7,7 +7,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'delivery', component: DeliveryComponent},
+  {path: 'delivery', component: DeliveryComponent, canMatch: [authenticationGuard]},
   {path: '**', component: NotFoundComponent}
 ];
 

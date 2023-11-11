@@ -1,13 +1,15 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, CanMatchFn, Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
-export const authenticationGuard: CanActivateFn = (route, state) => {
-  const jwtToken = localStorage.getItem('jwtToken');
+export const authenticationGuard: CanMatchFn = (route, state) => {
+  const authenticationService = inject(AuthenticationService);
   const router = inject(Router);
-
-  if (jwtToken) {
-    return true;
-  } else {
+  if (!authenticationService.jwtTokenExists()) {
+    router.navigate(['']);
     return false;
+  }
+  else {
+    return true;
   }
 };
