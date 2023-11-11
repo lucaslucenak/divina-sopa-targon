@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginPostDto } from 'src/app/models/dtos/login.post.dto';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -12,38 +12,38 @@ import { error } from 'jquery';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  momentForm!: FormGroup;
+  loginForm!: FormGroup;
 
-  constructor(private authService: AuthenticationService, private router: Router) {}
+  constructor(private authService: AuthenticationService, private router: Router, private formBuilder: FormBuilder) {}
 
-  login: LoginPostDto = {
-    cpf: "",
-    password: ""
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      cpf: [null],
+      password: [null]
+    })
   }
 
-  handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      alert('Erro do lado do cliente: ' + error.error.message)
-    }
-    if (error.status == 403) {
-      alert("Acesso não autorizado, confira as credenciais. Status: " + error.status);
-    }
-  }
+
+
   onSignIn() {
-    if (!this.login.cpf || !this.login.password) alert("Preencha todos os dados!");
-    
+    if (!this.loginForm.value.cpf || !this.loginForm.value.password) alert("Preencha todos os dados!");
+
     else {
-      this.authService.signIn(this.login).subscribe(res => {
+      const login: LoginPostDto = {
+        cpf: this.loginForm.value.cpf,
+        password: this.loginForm.value.password
+      }
+
+      this.authService.signIn(login).subscribe(res => {
         localStorage.setItem('jwtToken', res.jwtToken);
         this.router.navigate(['delivery'])
       },
       error => {
         if (error.status == 403) alert("Acesso não autorizado, confira as credenciais. HTTP Status: " + error.status);
-      }
-      
-      )
+      });
+
     }
   }
 
