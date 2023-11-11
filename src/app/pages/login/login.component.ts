@@ -36,12 +36,15 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.value.password
       }
 
-      this.authService.signIn(login).subscribe(res => {
-        localStorage.setItem('jwtToken', res.jwtToken);
-        this.router.navigate(['delivery'])
-      },
-      error => {
-        if (error.status == 403) alert("Acesso não autorizado, confira as credenciais. HTTP Status: " + error.status);
+      this.authService.signIn(login).subscribe({
+        next: (res) => {
+          localStorage.setItem('jwtToken', res.jwtToken);
+          this.router.navigateByUrl('/delivery');
+        },
+        error: (error) => {
+          if (error.status == 403) alert("Acesso não autorizado, confira as credenciais. HTTP Status: " + error.status);
+
+        }
       });
 
     }
