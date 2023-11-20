@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
       this.authService.signIn(login).subscribe({
         next: (res) => {
           localStorage.setItem('jwtToken', res.jwtToken);
+          localStorage.setItem('userRole', this.jwtService.getJwtTokenRole(res.jwtToken));
           this.router.navigateByUrl('/delivery');
         },
         error: (error) => {

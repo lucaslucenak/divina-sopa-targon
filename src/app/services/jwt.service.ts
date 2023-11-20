@@ -18,6 +18,6 @@ export class JwtService {
 
   getJwtTokenRole(jwtToken: string): string {
     const decodedToken = this.getDecodedJwtToken(jwtToken);
-    return decodedToken.role;
+    return decodedToken.role.toString();
   }
 }
