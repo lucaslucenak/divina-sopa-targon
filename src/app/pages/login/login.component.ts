@@ -6,6 +6,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { error } from 'jquery';
+import { JwtService } from 'src/app/services/jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,10 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  constructor(private authService: AuthenticationService, private router: Router, private formBuilder: FormBuilder) {}
+  constructor(private authService: AuthenticationService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private jwtService: JwtService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

@@ -17,6 +17,7 @@ import { LayoutComponent } from './layouts/layout/layout.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   ],
   providers: [
     provideNgxMask(),
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+    JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}
   
   ],
   bootstrap: [AppComponent]
