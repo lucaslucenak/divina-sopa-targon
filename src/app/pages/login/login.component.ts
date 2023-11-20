@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginPostDto } from 'src/app/models/dtos/login.post.dto';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      cpf: [null],
-      password: [null]
+      cpf: [null, [Validators.required]],
+      password: [null, [Validators.required]]
     })
   }
 
