@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { LoginPostDto } from '../models/dtos/login.post.dto';
+import { AuthenticationModel } from '../models/authentication.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,21 +15,18 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(cpf: string, password: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+  signIn(login: LoginPostDto): Observable<AuthenticationModel> {
+    return this.httpClient.post<AuthenticationModel>(`${this.noxusUrl}/authentication/login`, login);
+  }
 
-    const body = {
-      cpf: cpf,
-      password: password
+  jwtTokenExists() {
+    const jwtToken = localStorage.getItem('jwtToken');
+
+    if (jwtToken) {
+      return true;
     }
-
-    return this.httpClient.post<any>(`${this.noxusUrl}/authentication/login`, body, {headers})
-    .pipe(
-      tap(response => {
-        localStorage.setItem('jwtToken', response.jwtToken)
-      })
-    );
+    else {
+      return false;
+    }
   }
 }
