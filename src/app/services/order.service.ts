@@ -14,17 +14,7 @@ export class OrderService {
   constructor(private httpClient: HttpClient) { }
   
   getOrdersSortedByStatus() {
-    const headers = new Headers();
-
-    const localStorageJwtToken = localStorage.getItem('jwtToken');
-
-    if (localStorageJwtToken) {
-      headers.append('Authorization', localStorageJwtToken);
-    return this.httpClient.post<any>(`${this.noxusUrl}/authentication/login`, {headers: headers});
-
-    } else {
-      alert("Autentique novamente.")
-    }
+    return this.httpClient.get<any>(`${this.noxusUrl}/order/sort-by-status`);
   }
 
 }

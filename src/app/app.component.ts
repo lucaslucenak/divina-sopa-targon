@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OrderService } from './services/order.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'targon';
 
-  constructor() {
+  constructor(private orderService: OrderService) {
+    orderService.getOrdersSortedByStatus().subscribe(res => console.log(res.content))
   }
 
 }
