@@ -27,6 +27,12 @@ export class LoginComponent implements OnInit {
       cpf: [null, [Validators.required]],
       password: [null, [Validators.required]]
     })
+
+    if (localStorage.getItem('jwtToken')) {
+      if (this.jwtService.isJwtTokenExpired(localStorage.getItem('jwtToken') || '')) {
+        localStorage.clear();
+      }
+    }
   }
 
 
