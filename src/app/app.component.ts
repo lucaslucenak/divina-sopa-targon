@@ -9,8 +9,7 @@ import { OrderService } from './services/order.service';
 export class AppComponent {
   title = 'targon';
 
-  constructor(private orderService: OrderService) {
-    orderService.getOrdersSortedByStatus().subscribe(res => console.log(res.content))
+  constructor() {
   }
 
 }
