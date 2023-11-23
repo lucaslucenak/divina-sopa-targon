@@ -28,8 +28,8 @@
                 <ng-container matColumnDef="clientName">
                   <th mat-header-cell *matHeaderCellDef class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cliente</th>
                   <td mat-cell *matCellDef="let element">
-                    <p class="text-xs font-weight-bold mb-0">{{element.clientName}}</p>
-                    <p class="text-xs text-secondary mb-0">{{element.clientCellphoneNumber}}</p>
+                    <p class="text-xs font-weight-bold mb-0">{{element.clientAccount.firstName}} {{element.clientAccount.lastName}}</p>
+                    <p class="text-xs text-secondary mb-0">{{element.clientAccount.cellphoneNumber}}</p>
                   </td>
                 </ng-container>
 
@@ -40,12 +40,12 @@
 
                     <span [ngClass]="{
                       'status-badge': true,
-                      'ordered': element.orderStatus === 'ORDERED',
-                      'preparing': element.orderStatus === 'PREPARING',
-                      'dispatched': element.orderStatus === 'DISPATCHED',
-                      'finished': element.orderStatus === 'FINISHED',
-                      'canceled': element.orderStatus === 'CANCELED'
-                    }">{{element.orderStatus}}</span>
+                      'ordered': element.status.status === 'ORDERED',
+                      'preparing': element.status.status === 'PREPARING',
+                      'dispatched': element.status.status === 'DISPATCHED',
+                      'finished': element.status.status === 'FINISHED',
+                      'canceled': element.status.status === 'CANCELED'
+                    }">{{element.status.status}}</span>
 
                   </td>
                 </ng-container>
@@ -54,8 +54,8 @@
                 <ng-container matColumnDef="createdAt">
                   <th mat-header-cell *matHeaderCellDef class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Feito Às</th>
                   <td mat-cell *matCellDef="let element" class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{(element.createdAt).getHours()}}:{{(element.createdAt).getMinutes().toString().padStart(2, '0')}}:{{(element.createdAt).getSeconds().toString().padStart(2, '0')}}</span>
-                    <p class="text-xs text-secondary mb-0">{{(element.createdAt).getDate()}}/{{(element.createdAt).getMonth()+1}}/{{(element.createdAt).getFullYear()}}</p>
+                    <!-- <span class="text-secondary text-xs font-weight-bold">{{(element.createdAt).getHours()}}:{{(element.createdAt).getMinutes().toString().padStart(2, '0')}}:{{(element.createdAt).getSeconds().toString().padStart(2, '0')}}</span> -->
+                    <!-- <p class="text-xs text-secondary mb-0">{{(element.createdAt).getDate()}}/{{(element.createdAt).getMonth()+1}}/{{(element.createdAt).getFullYear()}}</p> -->
                   </td>
                 </ng-container>
 

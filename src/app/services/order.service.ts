@@ -2,13 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { OrderModel } from '../models/order.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  constructor(private httpClient: HttpClient) {
-   }
+  private noxusUrl = environment.noxusUrl;
+
+  constructor(private httpClient: HttpClient) { }
+  
+  getOrdersSortedByStatus() {
+    return this.httpClient.get<any>(`${this.noxusUrl}/order/sort-by-status`);
+  }
 
 }
