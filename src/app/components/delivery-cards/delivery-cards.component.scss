@@ -1,0 +1,48 @@
+/* Estilos CSS para Texto dentro dos Cards */
+
+.custom-card {
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    height: 90px;
+    overflow: hidden; /* Impede que o texto ultrapasse os limites do card */
+  }
+  
+  .custom-icon {
+    font-size: 25px;
+    color: #fff;
+    margin-top: 10px;
+  }
+  
+  .custom-title {
+    margin-top: 3px;
+    font-size: 0.8em;
+    color: #333;
+    overflow: hidden; /* Garante que o texto não ultrapasse */
+    text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+  }
+  
+  .custom-value {
+    font-size: 0.7em;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  
+  .yellow-gradient-bg {
+    background: linear-gradient(to bottom right, #FEAF00, #F9CE37);
+  }
+  
+  .light-pink-bg {
+    background-color: rgb(254, 246, 251);
+  }
+  
+  .light-blue-bg {
+    background-color: #F0F9FF;
+  }
+  

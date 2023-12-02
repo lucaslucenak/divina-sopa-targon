@@ -18,6 +18,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { DeliveryCardsComponent } from './components/delivery-cards/delivery-cards.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     LoginComponent,
     LayoutComponent,
     NotFoundComponent,
+    DeliveryCardsComponent,
   ],
   imports: [
     BrowserModule,
