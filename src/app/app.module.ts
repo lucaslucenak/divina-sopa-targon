@@ -21,6 +21,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { DeliveryCardsComponent } from './components/delivery-cards/delivery-cards.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
     LayoutComponent,
     NotFoundComponent,
     DeliveryCardsComponent,
+    OrderDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
     provideNgxMask(),
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
     JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
-    {provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: "longDate" }}
+    {provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: "longDate" }},
   ],
   bootstrap: [AppComponent]
 })
