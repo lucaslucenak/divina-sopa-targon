@@ -19,6 +19,8 @@ import { AuthenticationInterceptor } from './interceptors/authentication.interce
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { DeliveryCardsComponent } from './components/delivery-cards/delivery-cards.component';
+import { MatIconModule } from '@angular/material/icon';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,14 +42,15 @@ import { DeliveryCardsComponent } from './components/delivery-cards/delivery-car
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatIconModule,
     HttpClientModule,
-    NgxMaskDirective, NgxMaskPipe
+    NgxMaskDirective, NgxMaskPipe,
   ],
   providers: [
     provideNgxMask(),
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
-    JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS}
-  
+    JwtHelperService, {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    {provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: "longDate" }}
   ],
   bootstrap: [AppComponent]
 })

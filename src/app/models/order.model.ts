@@ -21,6 +21,7 @@ export interface OrderModel {
     cashRegisterBalance: CashRegosterBalanceModel;
     delivery: DeliveryModel;
     createdAt?: Date;
+    createdAtFormatted?: string;
     updatedAt?: Date;
     products?: OrderProductFieldModel[];
 
