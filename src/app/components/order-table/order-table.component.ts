@@ -75,10 +75,6 @@ export class OrderTableComponent implements AfterViewInit{
 
   ngOnInit(): void {
     this.fetchOrders();
-    // this.orders.forEach(order => {
-    //   order.createdAtFormatted = order.createdAt?.getHours().toString() + ':' + order.createdAt?.getMinutes().toString()  + ':' + order.createdAt?.getSeconds().toString()
-    // })
-
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -91,12 +87,6 @@ export class OrderTableComponent implements AfterViewInit{
     this.orderService.getOrdersSortedByStatus().subscribe({
       next: (res) => {
         this.orders = res.content;
-
-        this.orders.forEach((order: OrderModel) => {
-          if (order.createdAt) {
-            // order.createdAtFormatted = this.datePipe.transform(order.createdAt, 'HH:mm:ss')!;
-          }
-        })
 
         this.dataSource = new MatTableDataSource<OrderModel>(this.orders);
         this.dataSource.paginator = this.paginator;

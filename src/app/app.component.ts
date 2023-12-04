@@ -9,7 +9,6 @@ import { OrderService } from './services/order.service';
 export class AppComponent {
   title = 'targon';
 
-  constructor() {
-  }
+  constructor() {}
 
 }

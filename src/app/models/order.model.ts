@@ -24,9 +24,4 @@ export interface OrderModel {
     createdAtFormatted?: string;
     updatedAt?: Date;
     products?: OrderProductFieldModel[];
-
-
-    clientName: string;
-    clientCellphoneNumber: string;
-    orderStatus: string;
 }

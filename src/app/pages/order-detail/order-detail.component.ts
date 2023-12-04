@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
+import { OrderModel } from 'src/app/models/order.model';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -9,17 +12,33 @@ import { Router } from '@angular/router';
 })
 export class OrderDetailComponent implements OnInit {
   
-  orderId: number = 0;
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  orderId: number | null = null;
+  order: OrderModel | null = null;
+
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private orderService: OrderService) {}
 
   ngOnInit() {
-    const orderId = parseInt(this.route.snapshot.paramMap.get('orderId')!);
-    if (orderId && orderId != 0) {
-      this.orderId = orderId;
+    const paramOrderId = parseInt(this.route.snapshot.paramMap.get('orderId')!);
+    if (paramOrderId) {
+      this.orderId = paramOrderId;
+      this.fetchOrder(this.orderId);
     } else {
       alert('Pedido não encontrado');
       this.router.navigate(['/delivery']);
     }
+  }
+
+  fetchOrder(orderId: number): void {
+    this.orderService.getOrderById(orderId).subscribe({
+      next: (res) => {
+        this.order = res;
+      },
+      error: (error) => {
+        console.error("Erro ao carregar o pedido: ", error);
+      }
+    })
   }
 
 }

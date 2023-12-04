@@ -17,4 +17,8 @@ export class OrderService {
     return this.httpClient.get<any>(`${this.noxusUrl}/order/sort-by-status`);
   }
 
+  getOrderById(orderId: number) {
+    return this.httpClient.get<any>(`${this.noxusUrl}/order/${orderId}`);
+  }
+
 }
